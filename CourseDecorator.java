@@ -36,13 +36,17 @@ public class CourseDecorator extends AbstractStudent {
 		// of all the courses from all the CourseDecorators 
 		// attached to the test object. The code combines the
 		// delegate.getCourses() and this.toString().
-		return this.toString() + "\n";
+
+		return delegate.getCourses() + this.toString() + "\n";
 	}
 	public List<String> getCourseList() {
 		// TODO
 		// Write this code to add "this.toString()" to the List
 		// DO NOT make a List here, rely on the delegate to return
 		// its list and add to that.
+		List<String> courseList = delegate.getCourseList();
+		courseList.add(this.toString());
+		return courseList;
 	}
 	public boolean betweenStartAndEnd(LocalTime time) {
 		// TODO
@@ -55,6 +59,7 @@ public class CourseDecorator extends AbstractStudent {
 		// using the methods time.isAfter and time.isBefore 
 		// from the class LocalTime
 		// see https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalTime.html
+		return (time.equals(startTime.minusMinutes(10)) || time.isAfter(startTime.minusMinutes(10))) && time.isBefore(endTime.plusMinutes(10));
 	}
 	public boolean timeConflict(LocalTime time) {
 		// TODO
@@ -62,6 +67,12 @@ public class CourseDecorator extends AbstractStudent {
 		// or other of time and time.plusHours(1)
 		// If you do not have a true value, return
 		// delegate.timeConflict(time)
+		if (betweenStartAndEnd(time) || betweenStartAndEnd(time.plusHours(1))) 
+		{
+        	return true;
+		}
+		// Delegate to other courses
+		return delegate.timeConflict(time);
 	}
 	@Override
 	public String toString() {
@@ -75,4 +86,23 @@ public class CourseDecorator extends AbstractStudent {
 	// TODO
 	// implement the other abstract methods in AbstractStudent
 	// using calls to the delegate
+	@Override
+	public String getUniversity() {
+		return delegate.getUniversity();
+	}
+
+	@Override
+	public void setUniversity(String university) {
+		delegate.setUniversity(university);
+	}
+
+	@Override
+	public String getMajor() {
+		return delegate.getMajor();
+	}
+
+	@Override
+	public void setMajor(String major) {
+		delegate.setMajor(major);
+	}
 }
