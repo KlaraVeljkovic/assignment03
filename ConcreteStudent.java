@@ -33,8 +33,8 @@ public class ConcreteStudent extends AbstractStudent {
 	// implement any other missing method(s) in AbstractStudent
 	// even if they just return true or false
 	@Override
-	public boolean timeConflict(LocalTime time) {
-		// No time conflict if there are no course decorators
+	public boolean timeConflict(LocalTime time) 
+	{
 		return false;
 	}
 
