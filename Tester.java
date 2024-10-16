@@ -3,23 +3,25 @@ package assignment03;
 import java.time.LocalTime;
 import java.util.List;
 
-public class Tester {
-    public static void main(String[] args) {
+public class Tester 
+{
+    public static void main(String[] args) 
+    {
         // Create a Person
-        Person person = new Person("John Doe", "1990-01-01");
+        Person person = new Person("Klara Veljkovic", "2003-10-07");
         System.out.println("Testing Person class:");
         System.out.println("Name: " + person.getName());
         System.out.println("Date of Birth: " + person.getDateOfBirth());
-        person.setStreetAddress("123 Main St");
-        person.setCity("Springfield");
-        person.setStateAndZip("IL 62701");
+        person.setStreetAddress("4400 Vestal Pkwy E");
+        person.setCity("Binghamton");
+        person.setStateAndZip("NY 13902");
         person.setCountry("USA");
         System.out.println("Address: " + person.getStreetAddress() + ", " + person.getCity() + ", " + person.getStateAndZip() + ", " + person.getCountry());
 
         // Create a ConcreteStudent
         AbstractStudent student = new ConcreteStudent(person);
         System.out.println("\nTesting ConcreteStudent class:");
-        student.setUniversity("Example University");
+        student.setUniversity("Binghamton University");
         student.setMajor("Computer Science");
         System.out.println("University: " + student.getUniversity());
         System.out.println("Major: " + student.getMajor());
@@ -35,7 +37,8 @@ public class Tester {
         // Test getCourseList method from CourseDecorator
         System.out.println("Courses enrolled (getCourseList):");
         List<String> courses = student.getCourseList();
-        for (String course : courses) {
+        for (String course : courses) 
+        {
             System.out.println(course);
         }
 
